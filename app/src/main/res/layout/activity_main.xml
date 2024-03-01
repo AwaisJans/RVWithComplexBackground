@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/color_bg"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".activities.MainActivity">
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="300dp"
+        android:background="@color/white"
+        android:textAllCaps="false"
+        android:id="@+id/btnTwoImagesWithRV"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Two Images BG RV Example"
+        android:layout_height="70dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="300dp"
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnAnImageWithRV"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="One Image BG RV Example"
+        android:layout_height="70dp"/>
+
+
+
+</LinearLayout>
