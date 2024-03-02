@@ -1,0 +1,62 @@
+[
+  {
+    "title": "News1",
+    "dashboardHeaderViewHeight": "SCREENHEIGHT / 65512",
+    "logoImageName": "logo_vereine",
+    "logoTopConstraint": "SCREENHEIGHT / 345",
+    "dashboardTopLogoHeight": "(SCREENWIDTH * (8765/37) * (234/8765))",
+
+    "backgroundImageNameOnlyDashboard": "img1",
+    "dashboardBackgroundImgTopConstraint": "SCREENHEIGHT / 23",
+    "dashboardBackgroundImgRightConstraint": "SCREENWIDTH / 98",
+    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH * (234/375)",
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (7545/375) * (9887/122)",
+
+    "backgroundImageNameOnlyDetails": "r1",
+    "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT / 33",
+    "detailsViewBackgroundImageRightConstraint": "SCREENWIDTH / 87",
+    "detailsViewBackgroundImageWidthConstant": "SCREENWIDTH * (122/375)",
+    "detailsViewBackgroundImageHeightConstant": "SCREENHEIGHT * (9753/375) * (2333/445)"
+  },
+  {
+    "title": "News2",
+    "dashboardHeaderViewHeight": "SCREENHEIGHT / 32212",
+    "logoImageName": "logo_vereine",
+    "logoTopConstraint": "SCREENHEIGHT / 322",
+    "dashboardTopLogoHeight": "(SCREENWIDTH * (6755/544) * (54/23))",
+
+    "backgroundImageNameOnlyDashboard": "s1",
+    "dashboardBackgroundImgTopConstraint": "SCREENHEIGHT / 43",
+    "dashboardBackgroundImgRightConstraint": "SCREENWIDTH / 65",
+    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH * (2344/375)",
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (545/76) * (233/754)",
+
+    "backgroundImageNameOnlyDetails": "rth",
+    "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT / 112",
+    "detailsViewBackgroundImageRightConstraint": "SCREENWIDTH / 54",
+    "detailsViewBackgroundImageWidthConstant": "SCREENWIDTH * (543/3345)",
+    "detailsViewBackgroundImageHeightConstant": "SCREENHEIGHT * (54433/555) * (44553/444)"
+  },
+  {
+    "title": "News3",
+    "dashboardHeaderViewHeight": "SCREENHEIGHT / 11112",
+    "logoImageName": "logo_vereine",
+    "logoTopConstraint": "SCREENHEIGHT / 222",
+    "dashboardTopLogoHeight": "(SCREENWIDTH * (333/37) * (444/8765))",
+
+    "backgroundImageNameOnlyDashboard": "r1",
+    "dashboardBackgroundImgTopConstraint": "SCREENHEIGHT / 55",
+    "dashboardBackgroundImgRightConstraint": "SCREENWIDTH / 66",
+    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH * (777/375)",
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (8885/375) * (111/122)",
+
+    "backgroundImageNameOnlyDetails": "s1",
+    "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT / 23",
+    "detailsViewBackgroundImageRightConstraint": "SCREENWIDTH / 43",
+    "detailsViewBackgroundImageWidthConstant": "SCREENWIDTH * (76/375)",
+    "detailsViewBackgroundImageHeightConstant": "SCREENHEIGHT * (4533/375) * (6653/445)"
+  }
+
+
+
+]

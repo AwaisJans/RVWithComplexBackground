@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.jans.recycler.view.with.background.R
-import java.io.Serializable
+import com.jans.recycler.view.with.background.activities.TwoImagesBGScreen
+import com.jans.recycler.view.with.background.model.BGPositionModelClass
 
-class AdapterExample(private val list: List<String>) :
+class SampleAdapter(private val list: List<String>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,10 +26,12 @@ class AdapterExample(private val list: List<String>) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as JSONViewHolder
         val context = holder.itemView.context
-        val item = list[position]
+        val item = list!![position]
         val title = item
 
         holder.titleName.text = title
+
+
 
 
 
@@ -40,6 +42,6 @@ class AdapterExample(private val list: List<String>) :
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list!!.size
     }
 }

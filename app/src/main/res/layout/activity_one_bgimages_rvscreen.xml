@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/color_bg"
     android:layout_height="match_parent"
-    tools:context=".activities.TwoBGImagesRVScreen">
+    tools:context=".activities.NewsScreen">
 
 
 
@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/img2"
+            android:src="@drawable/logo_vereine"
             android:scaleType="fitXY"
             android:layout_height="wrap_content"/>
 

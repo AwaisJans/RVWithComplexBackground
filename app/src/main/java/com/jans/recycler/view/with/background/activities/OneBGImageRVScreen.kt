@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jans.recycler.view.with.background.R
-import com.jans.recycler.view.with.background.adapter.AdapterExample
+import com.jans.recycler.view.with.background.adapter.SampleAdapter
 
 class OneBGImageRVScreen : AppCompatActivity() {
 
@@ -24,7 +24,7 @@ class OneBGImageRVScreen : AppCompatActivity() {
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = AdapterExample(sampleList)
+        recyclerView.adapter = SampleAdapter(sampleList)
 
     }
 

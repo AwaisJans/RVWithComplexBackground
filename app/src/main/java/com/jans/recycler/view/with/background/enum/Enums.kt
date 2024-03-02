@@ -1,6 +1,6 @@
 package com.jans.recycler.view.with.background.enum
 
-enum class enums {
+enum class Enums {
     SCREENHEIGHT,
     SCREENWIDTH
 }

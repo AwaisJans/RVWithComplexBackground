@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/color_bg"
     android:layout_height="match_parent"
-    tools:context=".activities.TwoBGImagesRVScreen">
+    tools:context=".activities.NewsScreen">
 
 
 
@@ -15,21 +15,19 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:src="@drawable/img1"
             android:layout_alignParentTop="true"
             android:scaleType="fitXY"
             android:id="@+id/imageTop"
-            android:layout_height="300dp"/>
+            android:layout_height="wrap_content"/>
 
 
 
         <ImageView
             android:layout_width="wrap_content"
-            android:src="@drawable/img2"
             android:scaleType="fitXY"
             android:id="@+id/imageBtm"
             android:layout_alignParentBottom="true"
-            android:layout_height="300dp"/>
+            android:layout_height="wrap_content"/>
 
 
 

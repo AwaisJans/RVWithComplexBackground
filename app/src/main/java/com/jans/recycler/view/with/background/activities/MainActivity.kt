@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
 
         btnTwoImagesRV.setOnClickListener{
-            startActivity(Intent(this, TwoBGImagesRVScreen::class.java))
+            startActivity(Intent(this, NewsScreen::class.java))
         }
 
 
