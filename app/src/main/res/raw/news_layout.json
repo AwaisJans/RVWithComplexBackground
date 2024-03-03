@@ -1,29 +1,31 @@
 [
   {
-    "title": "News1","isTwoImageBGScreen": true,
+    "title": "News1",
+    "isTwoImageBGScreen": true,
     "dashboardHeaderViewHeight": "SCREENHEIGHT / 65512",
     "logoImageName": "logo_vereine",
     "logoTopConstraint": "SCREENHEIGHT / 345",
     "dashboardTopLogoHeight": "(SCREENWIDTH * (8765/37) * (234/8765))",
 
     "backgroundImageNameOnlyDashboard": "img1",
-    "dashboardBackgroundImgTopConstraint": "-(SCREENHEIGHT / 23)",
-    "dashboardBackgroundImgRightConstraint": "SCREENWIDTH / 98",
-    "dashboardBackgroundImgLeftConstraint": "SCREENWIDTH / 66",
+    "dashboardBackgroundImgTopConstraint": "SCREENWIDTH / 21",
+    "dashboardBackgroundImgRightConstraint": "SCREENHEIGHT / 87",
+    "dashboardBackgroundImgLeftConstraint": "SCREENWIDTH / 87",
 
-    "dashboardBackgroundImgWidthConstraint": "(SCREENWIDTH * (234/375))",
+    "dashboardBackgroundImgWidthConstraint": "(SCREENHEIGHT * (122/375))",
 
-    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (7545/375) * (9887/122)",
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (200/375) * (2333/445)",
 
     "backgroundImageNameOnlyDetails": "r1",
-    "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT / 33",
-    "detailsViewBackgroundImageRightConstraint": "SCREENWIDTH / 87",
-    "detailsViewBackgroundImageLeftConstraint": "SCREENWIDTH / 87",
-    "detailsViewBackgroundImageWidthConstant": "SCREENWIDTH * (122/375)",
-    "detailsViewBackgroundImageHeightConstant": "SCREENHEIGHT * (9753/375) * (2333/445)"
+    "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT - 3000",
+    "detailsViewBackgroundImageRightConstraint": "SCREENWIDTH / 40",
+    "detailsViewBackgroundImageLeftConstraint": "SCREENWIDTH / 40",
+    "detailsViewBackgroundImageWidthConstant": "SCREENWIDTH - (122/375)",
+    "detailsViewBackgroundImageHeightConstant": "SCREENHEIGHT * (200/375) * (2333/445)"
   },
   {
-    "title": "News2","isTwoImageBGScreen": true,
+    "title": "News2",
+    "isTwoImageBGScreen": true,
     "dashboardHeaderViewHeight": "SCREENHEIGHT / 32212",
     "logoImageName": "logo_vereine",
     "logoTopConstraint": "SCREENHEIGHT / 322",
@@ -38,14 +40,15 @@
     "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (545/76) * (233/754)",
 
     "backgroundImageNameOnlyDetails": "rth",
-    "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT / 112",
-    "detailsViewBackgroundImageRightConstraint": "SCREENWIDTH / 54",
-    "detailsViewBackgroundImageLeftConstraint": "SCREENWIDTH / 87",
+    "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT / 11662",
+    "detailsViewBackgroundImageRightConstraint": "SCREENWIDTH / 5554",
+    "detailsViewBackgroundImageLeftConstraint": "SCREENWIDTH / 84557",
     "detailsViewBackgroundImageWidthConstant": "SCREENWIDTH * (543/3345)",
     "detailsViewBackgroundImageHeightConstant": "SCREENHEIGHT * (54433/555) * (44553/444)"
   },
   {
-    "title": "News3","isTwoImageBGScreen": true,
+    "title": "News3",
+    "isTwoImageBGScreen": true,
     "dashboardHeaderViewHeight": "SCREENHEIGHT / 11112",
     "logoImageName": "logo_vereine",
     "logoTopConstraint": "SCREENHEIGHT / 222",
@@ -78,10 +81,7 @@
     "dashboardBackgroundImgRightConstraint": "SCREENWIDTH / 66",
     "dashboardBackgroundImgLeftConstraint": "SCREENWIDTH / 66",
     "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH * (777/375)",
-    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (8885/375) * (111/122)"
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (85/85) * (12/12)"
 
   }
-
-
-
 ]

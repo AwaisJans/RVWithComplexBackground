@@ -18,7 +18,6 @@
             android:id="@+id/imgOneBG"
             android:contentDescription="@string/backgroundimg"
             android:src="@drawable/logo_vereine"
-            android:scaleType="fitXY"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>

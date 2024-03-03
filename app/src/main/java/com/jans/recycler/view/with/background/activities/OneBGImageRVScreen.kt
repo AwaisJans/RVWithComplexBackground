@@ -31,7 +31,7 @@ class OneBGImageRVScreen : AppCompatActivity() {
         list = intent.getSerializableExtra("ARRAY_LIST_NEWS") as BGPositionModelClass.BGPositionModelClassItem?
 
         // getting all constraints
-        getConstraintWithHeightWidthForOneImageBG(this,list,imageBG)
+        getConstraintWithHeightWidthForOneImageBG(list,imageBG)
 
         setAdapterRV()
 
