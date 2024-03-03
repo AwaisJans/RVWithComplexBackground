@@ -8,21 +8,17 @@
     tools:context=".activities.NewsScreen">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:weightSum="2"
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:id="@+id/imgOneBG"
+            android:contentDescription="@string/backgroundimg"
             android:src="@drawable/logo_vereine"
-            android:scaleType="fitXY"
             android:layout_height="wrap_content"/>
-
-
 
     </LinearLayout>
 

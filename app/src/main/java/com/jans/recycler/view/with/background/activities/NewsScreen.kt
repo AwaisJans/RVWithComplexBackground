@@ -45,14 +45,12 @@ class NewsScreen : AppCompatActivity() {
         setContentView(R.layout.activity_two_bgimages_rvscreen)
 
         recyclerView = findViewById(R.id.rvList)
-
         setAdapterRV()
 
     }
 
 
     private fun setAdapterRV(){
-
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NewsAdapter(parseDashboardConfig())
     }
