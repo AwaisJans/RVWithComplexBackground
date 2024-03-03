@@ -13,6 +13,9 @@ class BGPositionModelClass : ArrayList<BGPositionModelClass.BGPositionModelClass
         @SerializedName("title")
         @Expose
         var title: String = "",
+        @SerializedName("isTwoImageBGScreen")
+        @Expose
+        var isTwoImageBGScreen: Boolean = false,
         @SerializedName("logoImageName")
         @Expose
         var logoImageName: String = "",
@@ -31,6 +34,9 @@ class BGPositionModelClass : ArrayList<BGPositionModelClass.BGPositionModelClass
         @SerializedName("dashboardBackgroundImgRightConstraint")
         @Expose
         var dashboardBackgroundImgRightConstraint: String = "",
+        @SerializedName("dashboardBackgroundImgLeftConstraint")
+        @Expose
+        var dashboardBackgroundImgLeftConstraint: String = "",
         @SerializedName("dashboardBackgroundImgWidthConstraint")
         @Expose
         var dashboardBackgroundImgWidthConstraint: String = "",
@@ -46,6 +52,9 @@ class BGPositionModelClass : ArrayList<BGPositionModelClass.BGPositionModelClass
         @SerializedName("detailsViewBackgroundImageRightConstraint")
         @Expose
         var detailsViewBackgroundImageRightConstraint: String = "",
+        @SerializedName("detailsViewBackgroundImageLeftConstraint")
+        @Expose
+        var detailsViewBackgroundImageLeftConstraint: String = "",
         @SerializedName("detailsViewBackgroundImageWidthConstant")
         @Expose
         var detailsViewBackgroundImageWidthConstant: String = "",

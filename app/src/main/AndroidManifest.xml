@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecyclerViewWithBackground"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.NewsScreen"
-            android:exported="false" />
+
         <activity
             android:name=".activities.OneBGImageRVScreen"
             android:exported="false" />
@@ -24,7 +22,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.NewsScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

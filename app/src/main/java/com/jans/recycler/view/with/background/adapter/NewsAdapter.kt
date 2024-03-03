@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jans.recycler.view.with.background.R
+import com.jans.recycler.view.with.background.activities.OneBGImageRVScreen
 import com.jans.recycler.view.with.background.activities.TwoImagesBGScreen
 import com.jans.recycler.view.with.background.model.BGPositionModelClass
 
@@ -33,12 +34,18 @@ class NewsAdapter(private val list: BGPositionModelClass?) :
 
 
         holder.itemView.setOnClickListener{
-            val nextScreenIntent = Intent(context,TwoImagesBGScreen::class.java)
-            nextScreenIntent.putExtra("ARRAY_LIST_NEWS",item)
-            context.startActivity(nextScreenIntent)
+
+            if (item.isTwoImageBGScreen){
+                val nextScreenIntent = Intent(context,TwoImagesBGScreen::class.java)
+                nextScreenIntent.putExtra("ARRAY_LIST_NEWS",item)
+                context.startActivity(nextScreenIntent)
+            } else{
+                val nextScreenIntent = Intent(context,OneBGImageRVScreen::class.java)
+                nextScreenIntent.putExtra("ARRAY_LIST_NEWS",item)
+                context.startActivity(nextScreenIntent)
+            }
+
         }
-
-
 
     }
 
