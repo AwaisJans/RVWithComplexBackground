@@ -7,9 +7,10 @@
     "dashboardTopLogoHeight": "(SCREENWIDTH * (8765/37) * (234/8765))",
 
     "backgroundImageNameOnlyDashboard": "img1",
-    "dashboardBackgroundImgTopConstraint": "SCREENHEIGHT / 23",
+    "dashboardBackgroundImgTopConstraint": "-(SCREENHEIGHT / 23)",
     "dashboardBackgroundImgRightConstraint": "SCREENWIDTH / 98",
-    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH * (234/375)",
+    "dashboardBackgroundImgWidthConstraint": "(SCREENWIDTH * (234/375))",
+
     "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (7545/375) * (9887/122)",
 
     "backgroundImageNameOnlyDetails": "r1",

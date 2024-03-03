@@ -52,11 +52,6 @@ class NewsScreen : AppCompatActivity() {
 
 
     private fun setAdapterRV(){
-//        val sampleList = mutableListOf<String>()
-
-//        repeat(500) {
-//            sampleList.add("My Favourite Challenge is to Accept Challenge $it")
-//        }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NewsAdapter(parseDashboardConfig())

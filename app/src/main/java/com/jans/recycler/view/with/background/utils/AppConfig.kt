@@ -33,7 +33,7 @@ class AppConfig {
         const val heightFromServerCase3 = "SCREENHEIGHT * (753/345)"
         const val widthFromServerCase3 = "SCREENWIDTH * (253*854)"
 
-          /**
+        /**
         Case 4 Sample Height & Width from Server
          */
 
@@ -73,7 +73,8 @@ class AppConfig {
         Case 2 Pattern For Regex
          */
 
-        val patternHeightCase2: Pattern = Pattern.compile("\\((-)?(SCREENHEIGHT) ([-+*/]) (\\d+)\\)")
+        val patternHeightCase2: Pattern =
+            Pattern.compile("\\((-)?(SCREENHEIGHT) ([-+*/]) (\\d+)\\)")
         val patternWidthCase2: Pattern = Pattern.compile("\\((-)?(SCREENWIDTH) ([-+*/]) (\\d+)\\)")
 
         /**
@@ -81,18 +82,18 @@ class AppConfig {
          */
 
         val patternHeightCase3: Pattern =
-            Pattern.compile( """SCREENHEIGHT\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
+            Pattern.compile("""SCREENHEIGHT\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
         val patternWidthCase3: Pattern =
-            Pattern.compile( """SCREENWIDTH\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
+            Pattern.compile("""SCREENWIDTH\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
 
         /**
         Case 4 Pattern For Regex
          */
 
         val patternHeightCase4: Pattern =
-            Pattern.compile( """SCREENHEIGHT\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
+            Pattern.compile("""SCREENHEIGHT\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
         val patternWidthCase4: Pattern =
-            Pattern.compile( """SCREENWIDTH\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
+            Pattern.compile("""SCREENWIDTH\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)\s*(\+|\-|\*|\/)\s*\(\s*(.*?)\s*\)""")
 
         /**
         Case 1 Regex Implementation
@@ -109,13 +110,14 @@ class AppConfig {
                 val operatorMid = patternMatcher.group(2)
                 val valueString = patternMatcher.group(3)
                 val value = valueString?.toInt()
+                Log.d("value123", "case1: running")
                 Log.d("values123", "getting value from regex case 1 : $value")
                 when (operatorMid) {
                     "+" -> screenHeightOrWidth + value!!
                     "-" -> screenHeightOrWidth - value!!
                     "*" -> screenHeightOrWidth * value!!
                     "/" -> screenHeightOrWidth % value!!
-                    else -> throw IllegalArgumentException("Invalid operator: $operatorMid")
+                    else -> 0
                 }
 
             } else {
@@ -139,16 +141,18 @@ class AppConfig {
                 val operatorString = patternMatcher.group(3)
                 val valueString = patternMatcher.group(4)
                 val value = valueString?.toInt()
+                Log.d("value123", "case2: running")
 
                 when (operatorString) {
                     "+" -> -(screenHeightOrWidth + value!!)
                     "-" -> -(screenHeightOrWidth - value!!)
                     "*" -> -(screenHeightOrWidth * value!!)
                     "/" -> -(screenHeightOrWidth % value!!)
-                    else -> throw IllegalArgumentException("Invalid operator: $operatorString")
+                    else -> 0
                 }
 
             } else {
+                Log.d("check123Case2", "case2 is not matching")
                 0
             }
         }
@@ -167,6 +171,7 @@ class AppConfig {
 
             val matchResult = regex.find(valueFromServer)
             return if (matchResult != null) {
+                Log.d("value123", "case3: running")
 
                 val beforeOperator = matchResult.groups[1]?.value
                 val restOfValue = matchResult.groups[2]?.value
@@ -199,21 +204,23 @@ class AppConfig {
                         "+" -> screenHeightOrWidth * (numberInBracket1 + numberInBracket2)
                         "-" -> screenHeightOrWidth * (numberInBracket1 - numberInBracket2)
                         "*" -> screenHeightOrWidth * (numberInBracket1 * numberInBracket2)
-                        "/" ->  screenHeightOrWidth * (numberInBracket1 % numberInBracket2)
+                        "/" -> screenHeightOrWidth * (numberInBracket1 % numberInBracket2)
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
                     "/" -> when (afterOperator) {
                         "+" -> screenHeightOrWidth % (numberInBracket1 + numberInBracket2)
-                        "-" ->  screenHeightOrWidth % (numberInBracket1 - numberInBracket2)
+                        "-" -> screenHeightOrWidth % (numberInBracket1 - numberInBracket2)
                         "*" -> screenHeightOrWidth % (numberInBracket1 * numberInBracket2)
                         "/" -> screenHeightOrWidth % (numberInBracket1 % numberInBracket2)
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
-                    else -> {0}
+                    else -> {
+                        0
+                    }
                 }
-            }else {
+            } else {
                 0
             }
         }
@@ -227,11 +234,10 @@ class AppConfig {
             screenHeightOrWidth: Int
         ): Int {
             val regex = Regex(pattern.pattern())
-            Log.d("value123", "regex pattern case 4: ${pattern.pattern()}")
 
             val matchResult = regex.find(valueFromServer)
             return if (matchResult != null) {
-
+                Log.d("value123", "case4: running")
 
 
                 val beforeOperator = matchResult.groups[1]?.value
@@ -258,34 +264,42 @@ class AppConfig {
                 val group1HeightCase4 = when (beforeOperator) {
                     "+" ->
                         when (afterOperator) {
-                        "+" -> {
-                            screenHeightOrWidth + (numberInBracket1 + (numberInBracket2))
+                            "+" -> {
+                                screenHeightOrWidth + (numberInBracket1 + (numberInBracket2))
+                            }
+
+                            "-" -> {
+                                screenHeightOrWidth + (numberInBracket1 - (numberInBracket2))
+                            }
+
+                            "*" -> {
+                                screenHeightOrWidth + (numberInBracket1 * numberInBracket2)
+                            }
+
+                            "/" -> {
+                                screenHeightOrWidth + (numberInBracket1 % numberInBracket2)
+                            }
+
+                            else -> 0 // Handle unsupported operator before the brackets
                         }
-                        "-" -> {
-                            screenHeightOrWidth + (numberInBracket1 - (numberInBracket2))
-                        }
-                        "*" -> {
-                            screenHeightOrWidth + (numberInBracket1 * numberInBracket2)
-                        }
-                        "/" ->{
-                            screenHeightOrWidth + (numberInBracket1 % numberInBracket2)
-                        }
-                        else -> 0 // Handle unsupported operator before the brackets
-                    }
 
                     "-" -> when (afterOperator) {
                         "+" -> {
                             screenHeightOrWidth - (numberInBracket1 + numberInBracket2)
                         }
+
                         "-" -> {
                             screenHeightOrWidth - (numberInBracket1 - numberInBracket2)
                         }
+
                         "*" -> {
                             screenHeightOrWidth - (numberInBracket1 * numberInBracket2)
                         }
+
                         "/" -> {
                             screenHeightOrWidth - (numberInBracket1 % numberInBracket2)
                         }
+
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
@@ -293,15 +307,19 @@ class AppConfig {
                         "+" -> {
                             screenHeightOrWidth * (numberInBracket1 + numberInBracket2)
                         }
+
                         "-" -> {
                             screenHeightOrWidth * (numberInBracket1 - numberInBracket2)
                         }
+
                         "*" -> {
                             screenHeightOrWidth * (numberInBracket1 * numberInBracket2)
                         }
-                        "/" ->  {
+
+                        "/" -> {
                             screenHeightOrWidth * (numberInBracket1 % numberInBracket2)
                         }
+
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
@@ -309,52 +327,66 @@ class AppConfig {
                         "+" -> {
                             screenHeightOrWidth % (numberInBracket1 + numberInBracket2)
                         }
-                        "-" ->  {
+
+                        "-" -> {
                             screenHeightOrWidth % (numberInBracket1 - numberInBracket2)
                         }
+
                         "*" -> {
                             screenHeightOrWidth % (numberInBracket1 * numberInBracket2)
                         }
+
                         "/" -> {
                             screenHeightOrWidth % (numberInBracket1 % numberInBracket2)
                         }
+
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
-                    else -> {0}
+                    else -> {
+                        0
+                    }
                 }
 
                 val group2HeightCase4 = when (thirdOperator) {
                     "+" ->
                         when (fourthOperator) {
-                        "+" -> {
-                            group1HeightCase4 + (numberInBracket3 + (numberInBracket4))
+                            "+" -> {
+                                group1HeightCase4 + (numberInBracket3 + (numberInBracket4))
+                            }
+
+                            "-" -> {
+                                group1HeightCase4 + (numberInBracket3 - (numberInBracket4))
+                            }
+
+                            "*" -> {
+                                group1HeightCase4 + (numberInBracket3 * numberInBracket4)
+                            }
+
+                            "/" -> {
+                                group1HeightCase4 + (numberInBracket3 % numberInBracket4)
+                            }
+
+                            else -> 0 // Handle unsupported operator before the brackets
                         }
-                        "-" -> {
-                            group1HeightCase4 + (numberInBracket3 - (numberInBracket4))
-                        }
-                        "*" -> {
-                            group1HeightCase4 + (numberInBracket3 * numberInBracket4)
-                        }
-                        "/" ->{
-                            group1HeightCase4 + (numberInBracket3 % numberInBracket4)
-                        }
-                        else -> 0 // Handle unsupported operator before the brackets
-                    }
 
                     "-" -> when (fourthOperator) {
                         "+" -> {
                             group1HeightCase4 - (numberInBracket3 + numberInBracket4)
                         }
+
                         "-" -> {
                             group1HeightCase4 - (numberInBracket3 - numberInBracket4)
                         }
+
                         "*" -> {
                             group1HeightCase4 - (numberInBracket3 * numberInBracket4)
                         }
+
                         "/" -> {
                             group1HeightCase4 - (numberInBracket3 % numberInBracket4)
                         }
+
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
@@ -362,15 +394,19 @@ class AppConfig {
                         "+" -> {
                             group1HeightCase4 * (numberInBracket3 + numberInBracket4)
                         }
+
                         "-" -> {
                             group1HeightCase4 * (numberInBracket3 - numberInBracket4)
                         }
+
                         "*" -> {
                             group1HeightCase4 * (numberInBracket3 * numberInBracket4)
                         }
-                        "/" ->  {
+
+                        "/" -> {
                             group1HeightCase4 * (numberInBracket3 % numberInBracket4)
                         }
+
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
@@ -378,29 +414,34 @@ class AppConfig {
                         "+" -> {
                             group1HeightCase4 % (numberInBracket3 + numberInBracket4)
                         }
-                        "-" ->  {
+
+                        "-" -> {
                             group1HeightCase4 % (numberInBracket3 - numberInBracket4)
                         }
+
                         "*" -> {
                             group1HeightCase4 % (numberInBracket3 * numberInBracket4)
                         }
+
                         "/" -> {
                             group1HeightCase4 % (numberInBracket3 % numberInBracket4)
                         }
+
                         else -> 0 // Handle unsupported operator before the brackets
                     }
 
-                    else -> {0}
+                    else -> {
+                        0
+                    }
                 }
 
-                group1HeightCase4+group2HeightCase4
+                group1HeightCase4 + group2HeightCase4
 
-            }else {
+            } else {
 
                 0
             }
         }
-
 
 
         /**
@@ -409,12 +450,20 @@ class AppConfig {
         @SuppressLint("DiscouragedApi")
         fun getDrawableResourceId(context: Context, imageNameFromJson: String): Int {
             val packageName = context.packageName
-            val resource = context.resources.getIdentifier(imageNameFromJson, "drawable", packageName)
-            if(imageNameFromJson.isEmpty() || imageNameFromJson == ""){
-                return context.resources.getIdentifier("ic_launcher_background", "drawable", packageName)
-            }
-            else if (resource == 0){ // if not found
-                return context.resources.getIdentifier("ic_launcher_background", "drawable", packageName)
+            val resource =
+                context.resources.getIdentifier(imageNameFromJson, "drawable", packageName)
+            if (imageNameFromJson.isEmpty() || imageNameFromJson == "") {
+                return context.resources.getIdentifier(
+                    "ic_launcher_background",
+                    "drawable",
+                    packageName
+                )
+            } else if (resource == 0) { // if not found
+                return context.resources.getIdentifier(
+                    "ic_launcher_background",
+                    "drawable",
+                    packageName
+                )
             }
 
             return resource

@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jans.recycler.view.with.background.R
-import com.jans.recycler.view.with.background.adapter.NewsAdapter
 import com.jans.recycler.view.with.background.adapter.SampleAdapter
 import com.jans.recycler.view.with.background.model.BGPositionModelClass.BGPositionModelClassItem
 import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getDrawableResourceId
@@ -40,6 +39,9 @@ class TwoImagesBGScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_two_bgimages_rvscreen)
 
+//         getting screen width and height
+        getScreenWidthAndHeight(this)
+
         recyclerView = findViewById(R.id.rvList)
         imgTopBG = findViewById(R.id.imageTop)
         imgBottomBG = findViewById(R.id.imageBtm)
@@ -60,9 +62,6 @@ class TwoImagesBGScreen : AppCompatActivity() {
             )
         )
 
-        // getting screen width and height
-        getScreenWidthAndHeight(this)
-
         // Assigning Top IMG CONSTRAINTS
         getHeightOrWidth(
             list!!.dashboardBackgroundImgHeightConstraint,
@@ -82,160 +81,54 @@ class TwoImagesBGScreen : AppCompatActivity() {
             imageView = imgBottomBG)
 
 
-
+//        // setting recycler view
         setAdapterRV()
 
     }
 
-
-
-
     private fun setConstraintsForTopBG(top: String, right: String, imageView: ImageView) {
-        Log.d("value123", "top:$top")
-        Log.d("value123", "bottom:$right")
+        val listOfHeightWidth = getFinalValuesForBG(top,right)
 
 
-        /**
-        Case 1 top & right
-         */
-        val resultTopCase1 =
-            getHeightOrWidthFromRegexCase1(patternHeightCase1, top, screenHeight)
-        val resultRightCase1 =
-            getHeightOrWidthFromRegexCase1(patternWidthCase1, right, screenWidth)
-
-        /**
-        Case 2 top & right
-         */
-        val resultTopCase2 =
-            getHeightOrWidthFromRegexCase2(patternHeightCase2, top, screenHeight)
-        val resultRightCase2 =
-            getHeightOrWidthFromRegexCase2(patternWidthCase2, right, screenWidth)
-
-        /**
-        Case 3 top & right
-         */
-        val resultTopCase3 =
-            getHeightOrWidthFromRegexCase3(patternHeightCase3, top, screenHeight)
-        val resultRightCase3 =
-            getHeightOrWidthFromRegexCase3(patternWidthCase3, right, screenWidth)
-
-        /**
-        Case 4 top & right
-         */
-        val resultTopCase4 =
-            getHeightOrWidthFromRegexCase4(patternHeightCase4, top, screenHeight)
-        val resultRightCase4 =
-            getHeightOrWidthFromRegexCase4(patternWidthCase4, right, screenWidth)
+        Log.d("listIntAllCasesCheck","top constraints: $listOfHeightWidth")
 
 
-        Log.d("value123", "case 4 top : $resultTopCase4")
-        Log.d("value123", "case 4 right : $resultRightCase4")
 
-        // now checking
-        val finalTop = when {
-            resultTopCase1 != 0 -> resultTopCase1
-            resultTopCase2 != 0 -> resultTopCase2
-            resultTopCase3 != 0 -> resultTopCase3
-            resultTopCase4 != 0 -> resultTopCase4
-            else -> 0
-        }
-
-        val finalRight =
-            when {
-                resultRightCase1 != 0 -> resultRightCase1
-                resultRightCase2 != 0 -> resultRightCase2
-                resultRightCase3 != 0 -> resultRightCase3
-                resultRightCase4 != 0 -> resultRightCase4
-                else -> 0
-            }
-        Log.d("value123", "finalTop:$finalTop")
-        Log.d("value123", "finalRight:$finalRight")
         if (imageView.layoutParams is MarginLayoutParams) {
-            (imageView.layoutParams as MarginLayoutParams).setMargins(0, finalTop, finalRight,0)
+            (imageView.layoutParams as MarginLayoutParams)
+                .setMargins(0, listOfHeightWidth[0], listOfHeightWidth[1],0)
             imageView.requestLayout()
         }
 
 
     }
-
 
     private fun setConstraintsForBottomBG(right: String, bottom: String, imageView: ImageView) {
-        Log.d("value123", "right:$right")
-        Log.d("value123", "bottom:$bottom")
 
-        /**
-        Case 1 bottom & right
-         */
-        val resultRightCase1 =
-            getHeightOrWidthFromRegexCase1(patternWidthCase1, right, screenHeight)
-        val resultBottomCase1 =
-            getHeightOrWidthFromRegexCase1(patternHeightCase1, bottom, screenWidth)
+        val listOfHeightWidth = getFinalValuesForBG(bottom,right)
+        Log.d("listIntAllCasesCheck","bottom constraints: $listOfHeightWidth")
 
-        /**
-        Case 2 bottom & right
-         */
-        val resultRightCase2 =
-            getHeightOrWidthFromRegexCase2(patternWidthCase2, right, screenHeight)
-        val resultBottomCase2 =
-            getHeightOrWidthFromRegexCase2(patternHeightCase2, bottom, screenWidth)
-
-        /**
-        Case 3 bottom & right
-         */
-        val resultRightCase3 =
-            getHeightOrWidthFromRegexCase3(patternWidthCase3, right, screenHeight)
-        val resultBottomCase3 =
-            getHeightOrWidthFromRegexCase3(patternHeightCase3, bottom, screenWidth)
-
-        /**
-        Case 4 bottom & right
-         */
-        val resultRightCase4 =
-            getHeightOrWidthFromRegexCase4(patternWidthCase4, right, screenHeight)
-        val resultBottomCase4 =
-            getHeightOrWidthFromRegexCase4(patternHeightCase4, bottom, screenWidth)
-
-
-
-
-        // now checking
-        val finalRight = when {
-            resultRightCase1 != 0 -> resultRightCase1
-            resultRightCase2 != 0 -> resultRightCase2
-            resultRightCase3 != 0 -> resultRightCase3
-            resultRightCase4 != 0 -> resultRightCase4
-            else -> 0
-        }
-
-        val finalBottom =
-            when {
-                resultBottomCase1 != 0 -> resultBottomCase1
-                resultBottomCase2 != 0 -> resultBottomCase2
-                resultBottomCase3 != 0 -> resultBottomCase3
-                resultBottomCase4 != 0 -> resultBottomCase4
-                else -> 0
-            }
-
-        Log.d("value123", "finalRight:$finalRight")
-        Log.d("value123", "finalBottom:$finalBottom")
         if (imageView.layoutParams is MarginLayoutParams) {
-            (imageView.layoutParams as MarginLayoutParams).setMargins(0, finalRight, finalBottom,0)
+            (imageView.layoutParams as MarginLayoutParams)
+                .setMargins(0, listOfHeightWidth[0], listOfHeightWidth[0],0)
             imageView.requestLayout()
         }
 
-
     }
-
-
 
     private fun getHeightOrWidth(height: String, width: String, imageView: ImageView) {
 
-        Log.d("value123", "finalHeight:$height")
-        Log.d("value123", "finalWidth:$width")
-        Log.d("value123", "here it is -> ${2183 * (545%76) * (233%754)}")
+        val listOfHeightWidth = getFinalValuesForBG(height,width)
 
+        imageView.layoutParams.height = listOfHeightWidth[0]
+        imageView.layoutParams.width = listOfHeightWidth[1]
+        Log.d("listIntAllCasesCheck","height & width constraints: $listOfHeightWidth")
+
+    }
+
+    private fun getFinalValuesForBG(height: String, width: String): List<Int> {
         /**
-        Case 1 Height & Width
+        Case 1
          */
         val resultHeightCase1 =
             getHeightOrWidthFromRegexCase1(patternHeightCase1, height, screenHeight)
@@ -243,7 +136,7 @@ class TwoImagesBGScreen : AppCompatActivity() {
             getHeightOrWidthFromRegexCase1(patternWidthCase1, width, screenWidth)
 
         /**
-        Case 2 Height & Width
+        Case 2
          */
         val resultHeightCase2 =
             getHeightOrWidthFromRegexCase2(patternHeightCase2, height, screenHeight)
@@ -251,7 +144,7 @@ class TwoImagesBGScreen : AppCompatActivity() {
             getHeightOrWidthFromRegexCase2(patternWidthCase2, width, screenWidth)
 
         /**
-        Case 3 Height & Width
+        Case 3
          */
         val resultHeightCase3 =
             getHeightOrWidthFromRegexCase3(patternHeightCase3, height, screenHeight)
@@ -259,16 +152,13 @@ class TwoImagesBGScreen : AppCompatActivity() {
             getHeightOrWidthFromRegexCase3(patternWidthCase3, width, screenWidth)
 
         /**
-        Case 4 Height & Width
+        Case 4
          */
         val resultHeightCase4 =
             getHeightOrWidthFromRegexCase4(patternHeightCase4, height, screenHeight)
         val resultWidthCase4 =
             getHeightOrWidthFromRegexCase4(patternWidthCase4, width, screenWidth)
 
-
-        Log.d("value123", "case 4 height : $resultHeightCase4")
-        Log.d("value123", "case 4 width : $resultWidthCase4")
 
         // now checking
         val finalHeight = when {
@@ -288,13 +178,9 @@ class TwoImagesBGScreen : AppCompatActivity() {
                 else -> 0
             }
 
-        imageView.layoutParams.height = finalHeight
-        imageView.layoutParams.width = finalWidth
 
-        Log.d("value123", "finalHeight:$finalHeight")
-        Log.d("value123", "finalWidth:$finalWidth")
+        return listOf(finalHeight, finalWidth)
     }
-
 
     private fun setAdapterRV() {
         val sampleList = mutableListOf<String>()
@@ -307,8 +193,5 @@ class TwoImagesBGScreen : AppCompatActivity() {
         recyclerView.adapter = SampleAdapter(sampleList)
     }
 
-    private fun codeSample(){
-
-    }
 
 }
