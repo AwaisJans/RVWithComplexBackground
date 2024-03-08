@@ -1,8 +1,10 @@
 package com.jans.recycler.view.with.background.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jans.recycler.view.with.background.R
@@ -10,6 +12,7 @@ import com.jans.recycler.view.with.background.adapter.SampleAdapter
 import com.jans.recycler.view.with.background.model.BGPositionModelClass
 import com.jans.recycler.view.with.background.utils.AppConfig
 import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getConstraintWithHeightWidthForOneImageBG
+
 
 class OneBGImageRVScreen : AppCompatActivity() {
 
@@ -20,20 +23,24 @@ class OneBGImageRVScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_one_bgimages_rvscreen)
+        setContentView(com.jans.recycler.view.with.background.R.layout.activity_one_bgimages_rvscreen)
 
 //      getting screen width and height
         AppConfig.getScreenWidthAndHeight(this)
 
-        recyclerView = findViewById(R.id.rvList)
-        imageBG = findViewById(R.id.imgOneBG)
+        recyclerView = findViewById(com.jans.recycler.view.with.background.R.id.rvList)
+        imageBG = findViewById(com.jans.recycler.view.with.background.R.id.imgOneBG)
 
         list = intent.getSerializableExtra("ARRAY_LIST_NEWS") as BGPositionModelClass.BGPositionModelClassItem?
 
-        // getting all constraints
-        getConstraintWithHeightWidthForOneImageBG(list,imageBG)
 
-        setAdapterRV()
+        val parent:RelativeLayout = findViewById(R.id.parentMain)
+
+
+        // getting all constraints
+        getConstraintWithHeightWidthForOneImageBG(list,imageBG,parent)
+
+//        setAdapterRV()
 
     }
 

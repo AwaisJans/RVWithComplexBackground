@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/color_bg"
+    android:id="@+id/parentMain"
     android:layout_height="match_parent"
     tools:context=".activities.NewsScreen">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:id="@+id/imgOneBG"
             android:contentDescription="@string/backgroundimg"
-            android:src="@drawable/logo_vereine"
-            android:layout_height="wrap_content"/>
+            android:src="@drawable/img1"
+            android:layout_height="50dp"/>
 
-    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView

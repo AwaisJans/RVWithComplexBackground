@@ -1,17 +1,22 @@
 package com.jans.recycler.view.with.background.utils
 
+import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Point
 import android.util.Log
 import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.jans.recycler.view.with.background.model.BGPositionModelClass
+import kotlinx.coroutines.NonDisposableHandle.parent
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
 
 class AppConfig {
 
@@ -107,23 +112,21 @@ class AppConfig {
         Case 1 Regex Implementation
          */
         fun getHeightOrWidthFromRegexCase1(
-            pattern1: Pattern,
-            pattern2: Pattern,
             valueFromServer: String,
-            screenHeightOrWidth: Int
         ): Int {
-            val patternMatcher = pattern1.matcher(valueFromServer)
-            val patternMatcher2 = pattern2.matcher(valueFromServer)
-            return if (patternMatcher.find()) {
-                case1RegexCode(patternMatcher,screenHeightOrWidth)
-            } else if (patternMatcher2.find()) {
-                case1RegexCode(patternMatcher2,screenHeightOrWidth)
+            val patternMatcherHeight = patternHeightCase1.matcher(valueFromServer)
+            val patternMatcherWidth = patternWidthCase1.matcher(valueFromServer)
+
+            return if (patternMatcherHeight.find()) {
+                case1RegexCode(patternMatcherHeight, screenHeight)
+            } else if (patternMatcherWidth.find()) {
+                case1RegexCode(patternMatcherWidth, screenWidth)
             } else {
                 0
             }
         }
 
-        private fun case1RegexCode(patternMatcher: Matcher,screenHeightOrWidth: Int): Int{
+        private fun case1RegexCode(patternMatcher: Matcher, screenHeightOrWidth: Int): Int {
             val text = patternMatcher.group(1)
             val operatorMid = patternMatcher.group(2)
             val valueString = patternMatcher.group(3)
@@ -142,24 +145,21 @@ class AppConfig {
         Case 2 Regex Implementation
          */
         fun getHeightOrWidthFromRegexCase2(
-            pattern1: Pattern,
-            pattern2: Pattern,
             valueFromServer: String,
-            screenHeightOrWidth: Int
         ): Int {
-            val patternMatcher = pattern1.matcher(valueFromServer)
-            val patternMatcher2 = pattern2.matcher(valueFromServer)
+            val patternMatcherHeight = patternHeightCase2.matcher(valueFromServer)
+            val patternMatcherWidth = patternWidthCase2.matcher(valueFromServer)
 
-            return if (patternMatcher.find()) {
-                case2RegexCode(patternMatcher,screenHeightOrWidth)
-            } else if (patternMatcher2.find()) {
-                case2RegexCode(patternMatcher2,screenHeightOrWidth)
+            return if (patternMatcherHeight.find()) {
+                case2RegexCode(patternMatcherHeight, screenHeight)
+            } else if (patternMatcherWidth.find()) {
+                case2RegexCode(patternMatcherWidth, screenWidth)
             } else {
                 0
             }
         }
 
-        private fun case2RegexCode(patternMatcher: Matcher,screenHeightOrWidth: Int): Int{
+        private fun case2RegexCode(patternMatcher: Matcher, screenHeightOrWidth: Int): Int {
             val negative = patternMatcher.group(1)
             val operatorString = patternMatcher.group(3)
             val valueString = patternMatcher.group(4)
@@ -179,29 +179,25 @@ class AppConfig {
         Case 3 Regex Implementation
          */
         fun getHeightOrWidthFromRegexCase3(
-            pattern1: Pattern,
-            pattern2: Pattern,
             valueFromServer: String,
-            screenHeightOrWidth: Int
         ): Int {
-            val regex1 = Regex(pattern1.pattern())
-            val regex2 = Regex(pattern2.pattern())
-//            Log.d("values123", "regex pattern case 3: ${pattern.pattern()}")
+            val regexHeight = Regex(patternHeightCase3.pattern())
+            val regexWidth = Regex(patternWidthCase3.pattern())
 
-            val matchResult1 = regex1.find(valueFromServer)
-            val matchResult2 = regex2.find(valueFromServer)
+            val matchResultHeight = regexHeight.find(valueFromServer)
+            val matchResultWidth = regexWidth.find(valueFromServer)
 
-            return if (matchResult1 != null) {
-                Log.d("value123", "case3: running")
-                case3RegexCode(matchResult1,screenHeightOrWidth)
-            } else if (matchResult2 != null) {
-                case3RegexCode(matchResult2,screenHeightOrWidth)
+            return if (matchResultHeight != null) {
+                case3RegexCode(matchResultHeight, screenHeight)
+            } else if (matchResultWidth != null) {
+                case3RegexCode(matchResultWidth, screenWidth)
             } else {
                 0
             }
 
         }
-        private fun case3RegexCode(matchResult: MatchResult,screenHeightOrWidth: Int): Int{
+
+        private fun case3RegexCode(matchResult: MatchResult, screenHeightOrWidth: Int): Int {
             val beforeOperator = matchResult.groups[1]?.value
             val restOfValue = matchResult.groups[2]?.value
             val afterOperator = restOfValue?.replace(Regex("[0-9]+"), "")
@@ -252,28 +248,25 @@ class AppConfig {
         Case 4 Regex Implementation
          */
         fun getHeightOrWidthFromRegexCase4(
-            pattern1: Pattern,
-            pattern2: Pattern,
             valueFromServer: String,
-            screenHeightOrWidth: Int
         ): Int {
-            val regex1 = Regex(pattern1.pattern())
-            val regex2 = Regex(pattern2.pattern())
+            val regexHeight = Regex(patternHeightCase4.pattern())
+            val regexWidth = Regex(patternWidthCase4.pattern())
 
-            val matchResult1 = regex1.find(valueFromServer)
-            val matchResult2 = regex2.find(valueFromServer)
+            val matchResultHeight = regexHeight.find(valueFromServer)
+            val matchResultWidth = regexWidth.find(valueFromServer)
 
-            return if (matchResult1 != null) {
+            return if (matchResultHeight != null) {
                 Log.d("value123", "case3: running")
-                case4RegexCode(matchResult1,screenHeightOrWidth)
-            } else if (matchResult2 != null) {
-                case4RegexCode(matchResult2,screenHeightOrWidth)
+                case4RegexCode(matchResultHeight, screenHeight)
+            } else if (matchResultWidth != null) {
+                case4RegexCode(matchResultWidth, screenWidth)
             } else {
                 0
             }
         }
 
-        private fun case4RegexCode(matchResult: MatchResult,screenHeightOrWidth: Int): Int{
+        private fun case4RegexCode(matchResult: MatchResult, screenHeightOrWidth: Int): Int {
             Log.d("value123", "case4: running")
 
             // i divided given string into two parts
@@ -476,20 +469,15 @@ class AppConfig {
         Case 5 Regex Implementation
          */
         private fun getHeightOrWidthFromRegexCase5(
-            pattern1: Pattern,
-            pattern2: Pattern,
             valueFromServer: String,
-            screenHeightOrWidth: Int
         ): Int {
-            val patternMatcher = pattern1.matcher(valueFromServer)
-            val patternMatcher2 = pattern2.matcher(valueFromServer)
-            return if (patternMatcher.find()) {
-                screenHeightOrWidth
-            }
-            else if (patternMatcher2.find()) {
-                screenHeightOrWidth
-            }
-            else {
+            val patternMatcherHeight = patternHeightCase5.matcher(valueFromServer)
+            val patternMatcherWidth = patternWidthCase5.matcher(valueFromServer)
+            return if (patternMatcherHeight.find()) {
+                screenHeight
+            } else if (patternMatcherWidth.find()) {
+                screenWidth
+            } else {
                 0
             }
         }
@@ -530,41 +518,41 @@ class AppConfig {
             Case 1
              */
             val resultHeightCase1 =
-                getHeightOrWidthFromRegexCase1(patternWidthCase1,patternHeightCase1, height, screenHeight)
+                getHeightOrWidthFromRegexCase1(height)
             val resultWidthCase1 =
-                getHeightOrWidthFromRegexCase1(patternHeightCase1,patternWidthCase1, width,screenWidth)
+                getHeightOrWidthFromRegexCase1(width)
 
             /**
             Case 2
              */
             val resultHeightCase2 =
-                getHeightOrWidthFromRegexCase2(patternWidthCase2,patternHeightCase2, height, screenHeight)
+                getHeightOrWidthFromRegexCase2(height)
             val resultWidthCase2 =
-                getHeightOrWidthFromRegexCase2(patternHeightCase2,patternWidthCase2, width, screenWidth)
+                getHeightOrWidthFromRegexCase2(width)
 
             /**
             Case 3
              */
             val resultHeightCase3 =
-                getHeightOrWidthFromRegexCase3(patternWidthCase3,patternHeightCase3, height, screenHeight)
+                getHeightOrWidthFromRegexCase3(height)
             val resultWidthCase3 =
-                getHeightOrWidthFromRegexCase3(patternHeightCase3,patternWidthCase3, width, screenWidth)
+                getHeightOrWidthFromRegexCase3(width)
 
             /**
             Case 4
              */
             val resultHeightCase4 =
-                getHeightOrWidthFromRegexCase4(patternWidthCase4,patternHeightCase4, height, screenHeight)
+                getHeightOrWidthFromRegexCase4(height)
             val resultWidthCase4 =
-                getHeightOrWidthFromRegexCase4(patternHeightCase4,patternWidthCase4, width, screenWidth)
+                getHeightOrWidthFromRegexCase4(width)
 
             /**
             Case 5
              */
             val resultHeightCase5 =
-                getHeightOrWidthFromRegexCase5(patternWidthCase5,patternHeightCase5, height, screenHeight)
+                getHeightOrWidthFromRegexCase5(height)
             val resultWidthCase5 =
-                getHeightOrWidthFromRegexCase5(patternHeightCase5,patternWidthCase5, width, screenWidth)
+                getHeightOrWidthFromRegexCase5(width)
 
             // now checking
             val finalHeight = when {
@@ -592,114 +580,235 @@ class AppConfig {
         /**
         Code to Get Final Values for Constraint of BG
          */
-        private fun getFinalValuesForConstraintsBG(left: String, right: String, topOrBottom:String): List<Int> {
+        private fun getFinalValuesForConstraintsTwoBG(
+            left: String,
+            right: String,
+            topOrBottom: String
+        ): List<Int> {
 
             /**
             Case 1
              */
-            val  resultLeftCase1 =
-                getHeightOrWidthFromRegexCase1(patternHeightCase1,patternWidthCase1, left, screenHeight)
-            val  resultRightCase1 =
-                getHeightOrWidthFromRegexCase1(patternHeightCase1,patternWidthCase1, right,screenWidth)
-            val  resultTopOrBottomCase1 =
-                getHeightOrWidthFromRegexCase1(patternHeightCase1,patternWidthCase1, topOrBottom,screenWidth)
+            val resultLeftCase1 =
+                getHeightOrWidthFromRegexCase1(left)
+            val resultRightCase1 =
+                getHeightOrWidthFromRegexCase1(right)
+            val resultTopOrBottomCase1 =
+                getHeightOrWidthFromRegexCase1(topOrBottom)
 
             /**
             Case 2
              */
-            val  resultLeftCase2 =
-                getHeightOrWidthFromRegexCase2(patternHeightCase2,patternWidthCase2, left, screenHeight)
-            val  resultRightCase2 =
-                getHeightOrWidthFromRegexCase2(patternHeightCase2,patternWidthCase2, right, screenWidth)
-            val  resultTopOrBottomCase2 =
-                getHeightOrWidthFromRegexCase2(patternHeightCase2,patternWidthCase2, topOrBottom,screenWidth)
+            val resultLeftCase2 =
+                getHeightOrWidthFromRegexCase2(left)
+            val resultRightCase2 =
+                getHeightOrWidthFromRegexCase2(right)
+            val resultTopOrBottomCase2 =
+                getHeightOrWidthFromRegexCase2(topOrBottom)
 
             /**
             Case 3
              */
-            val  resultLeftCase3 =
-                getHeightOrWidthFromRegexCase3(patternHeightCase3,patternWidthCase3, left, screenHeight)
-            val  resultRightCase3 =
-                getHeightOrWidthFromRegexCase3(patternHeightCase3,patternWidthCase3, right, screenWidth)
-            val  resultTopOrBottomCase3 =
-                getHeightOrWidthFromRegexCase3(patternHeightCase3,patternWidthCase3, topOrBottom,screenWidth)
+            val resultLeftCase3 =
+                getHeightOrWidthFromRegexCase3(left)
+            val resultRightCase3 =
+                getHeightOrWidthFromRegexCase3(right)
+            val resultTopOrBottomCase3 =
+                getHeightOrWidthFromRegexCase3(topOrBottom)
 
             /**
             Case 4
              */
-            val  resultLeftCase4 =
-                getHeightOrWidthFromRegexCase4(patternWidthCase4,patternHeightCase4, left, screenHeight)
-            val  resultRightCase4 =
-                getHeightOrWidthFromRegexCase4(patternHeightCase4,patternWidthCase4, right, screenWidth)
-            val  resultTopOrBottomCase4 =
-                getHeightOrWidthFromRegexCase4(patternHeightCase4,patternWidthCase4, topOrBottom,screenWidth)
+            val resultLeftCase4 =
+                getHeightOrWidthFromRegexCase4(left)
+            val resultRightCase4 =
+                getHeightOrWidthFromRegexCase4(right)
+            val resultTopOrBottomCase4 =
+                getHeightOrWidthFromRegexCase4(topOrBottom)
 
             /**
             Case 5
              */
-            val  resultLeftCase5 =
-                getHeightOrWidthFromRegexCase5(patternWidthCase5,patternHeightCase5, left, screenHeight)
-            val  resultRightCase5 =
-                getHeightOrWidthFromRegexCase5(patternHeightCase5,patternWidthCase5, right, screenWidth)
-            val  resultTopOrBottomCase5 =
-                getHeightOrWidthFromRegexCase5(patternHeightCase5,patternWidthCase5, topOrBottom,screenWidth)
+            val resultLeftCase5 =
+                getHeightOrWidthFromRegexCase5(left)
+            val resultRightCase5 =
+                getHeightOrWidthFromRegexCase5(right)
+            val resultTopOrBottomCase5 =
+                getHeightOrWidthFromRegexCase5(topOrBottom)
 
             // now checking
             val finalLeft = when {
-                 resultLeftCase1 != 0 ->  resultLeftCase1
-                 resultLeftCase2 != 0 ->  resultLeftCase2
-                 resultLeftCase3 != 0 ->  resultLeftCase3
-                 resultLeftCase4 != 0 ->  resultLeftCase4
-                 resultLeftCase5 != 0 ->  resultLeftCase5
+                resultLeftCase1 != 0 -> resultLeftCase1
+                resultLeftCase2 != 0 -> resultLeftCase2
+                resultLeftCase3 != 0 -> resultLeftCase3
+                resultLeftCase4 != 0 -> resultLeftCase4
+                resultLeftCase5 != 0 -> resultLeftCase5
                 else -> 0
             }
             val finalRight =
                 when {
-                     resultRightCase1 != 0 ->  resultRightCase1
-                     resultRightCase2 != 0 ->  resultRightCase2
-                     resultRightCase3 != 0 ->  resultRightCase3
-                     resultRightCase4 != 0 ->  resultRightCase4
-                     resultRightCase5 != 0 ->  resultRightCase5
+                    resultRightCase1 != 0 -> resultRightCase1
+                    resultRightCase2 != 0 -> resultRightCase2
+                    resultRightCase3 != 0 -> resultRightCase3
+                    resultRightCase4 != 0 -> resultRightCase4
+                    resultRightCase5 != 0 -> resultRightCase5
                     else -> 0
                 }
             val finalTopOrBottom =
                 when {
-                     resultTopOrBottomCase1 != 0 ->  resultTopOrBottomCase1
-                     resultTopOrBottomCase2 != 0 ->  resultTopOrBottomCase2
-                     resultTopOrBottomCase3 != 0 ->  resultTopOrBottomCase3
-                     resultTopOrBottomCase4 != 0 ->  resultTopOrBottomCase4
-                     resultTopOrBottomCase5 != 0 ->  resultTopOrBottomCase5
+                    resultTopOrBottomCase1 != 0 -> resultTopOrBottomCase1
+                    resultTopOrBottomCase2 != 0 -> resultTopOrBottomCase2
+                    resultTopOrBottomCase3 != 0 -> resultTopOrBottomCase3
+                    resultTopOrBottomCase4 != 0 -> resultTopOrBottomCase4
+                    resultTopOrBottomCase5 != 0 -> resultTopOrBottomCase5
                     else -> 0
                 }
 
 
-            return listOf(finalLeft, finalRight,finalTopOrBottom)
+            return listOf(finalLeft, finalRight, finalTopOrBottom)
+        }
+
+        /**
+        Code to Get Final Values for Constraint of One BG
+         */
+        private fun getFinalValuesForConstraintsOneBG(
+            top: String,
+            right: String,
+            left: String,
+            bottom: String
+        ): List<Int> {
+
+            /**
+            Case 1
+             */
+            val resultLeftCase1 =
+                getHeightOrWidthFromRegexCase1(left)
+            val resultRightCase1 =
+                getHeightOrWidthFromRegexCase1(right)
+            val resultTopCase1 = getHeightOrWidthFromRegexCase1(top)
+            val resultBottomCase1 = getHeightOrWidthFromRegexCase1(bottom)
+
+            /**
+            Case 2
+             */
+            val resultLeftCase2 =
+                getHeightOrWidthFromRegexCase2(left)
+            val resultRightCase2 =
+                getHeightOrWidthFromRegexCase2(right)
+            val resultTopCase2 =
+                getHeightOrWidthFromRegexCase2(top)
+            val resultBottomCase2 = getHeightOrWidthFromRegexCase2(bottom)
+
+            /**
+            Case 3
+             */
+            val resultLeftCase3 =
+                getHeightOrWidthFromRegexCase3(left)
+            val resultRightCase3 =
+                getHeightOrWidthFromRegexCase3(right)
+            val resultTopCase3 =
+                getHeightOrWidthFromRegexCase3(top)
+            val resultBottomCase3 = getHeightOrWidthFromRegexCase3(bottom)
+
+            /**
+            Case 4
+             */
+            val resultLeftCase4 =
+                getHeightOrWidthFromRegexCase4(left)
+            val resultRightCase4 =
+                getHeightOrWidthFromRegexCase4(right)
+            val resultTopCase4 =
+                getHeightOrWidthFromRegexCase4(top)
+            val resultBottomCase4 = getHeightOrWidthFromRegexCase4(bottom)
+
+            /**
+            Case 5
+             */
+            val resultLeftCase5 =
+                getHeightOrWidthFromRegexCase5(left)
+            val resultRightCase5 =
+                getHeightOrWidthFromRegexCase5(right)
+            val resultTopCase5 =
+                getHeightOrWidthFromRegexCase5(top)
+            val resultBottomCase5 = getHeightOrWidthFromRegexCase5(bottom)
+
+            // now checking
+            val finalLeft = when {
+                resultLeftCase1 != 0 -> resultLeftCase1
+                resultLeftCase2 != 0 -> resultLeftCase2
+                resultLeftCase3 != 0 -> resultLeftCase3
+                resultLeftCase4 != 0 -> resultLeftCase4
+                resultLeftCase5 != 0 -> resultLeftCase5
+                else -> 0
+            }
+            val finalRight = when {
+                resultRightCase1 != 0 -> resultRightCase1
+                resultRightCase2 != 0 -> resultRightCase2
+                resultRightCase3 != 0 -> resultRightCase3
+                resultRightCase4 != 0 -> resultRightCase4
+                resultRightCase5 != 0 -> resultRightCase5
+                else -> 0
+            }
+            val finalTop = when {
+                resultTopCase1 != 0 -> resultTopCase1
+                resultTopCase2 != 0 -> resultTopCase2
+                resultTopCase3 != 0 -> resultTopCase3
+                resultTopCase4 != 0 -> resultTopCase4
+                resultTopCase5 != 0 -> resultTopCase5
+                else -> 0
+            }
+            val finalBottom = when {
+                resultBottomCase1 != 0 -> resultBottomCase1
+                resultBottomCase2 != 0 -> resultBottomCase2
+                resultBottomCase3 != 0 -> resultBottomCase3
+                resultBottomCase4 != 0 -> resultBottomCase4
+                resultBottomCase5 != 0 -> resultBottomCase5
+                else -> 0
+            }
+
+
+
+            return listOf(finalLeft, finalTop, finalRight, finalBottom)
         }
 
         /**
         Code to Set Final Top Image Constraints
          */
-        private fun setConstraintsForTopBG(top: String, right: String,left:String, imageView: ImageView) {
-            val listOfHeightWidth = getFinalValuesForConstraintsBG(top,right,left)
-            Log.d("listIntAllCasesCheck","top constraints: --> top,left,right  $listOfHeightWidth")
+        private fun setConstraintsForTopBG(
+            top: String,
+            right: String,
+            left: String,
+            imageView: ImageView
+        ) {
+            val listOfHeightWidth = getFinalValuesForConstraintsTwoBG(top, right, left)
+            Log.d("listIntAllCasesCheck", "top constraints: --> top,left,right  $listOfHeightWidth")
             if (imageView.layoutParams is ViewGroup.MarginLayoutParams) {
                 (imageView.layoutParams as ViewGroup.MarginLayoutParams)
-                    .setMargins(listOfHeightWidth[2], listOfHeightWidth[0], listOfHeightWidth[1],0)
+                    .setMargins(listOfHeightWidth[2], listOfHeightWidth[0], listOfHeightWidth[1], 0)
                 imageView.requestLayout()
             }
         }
 
+
         /**
         Code to Set Final Bottom Image Constraints
          */
-        private fun setConstraintsForBottomBG(right: String, bottom: String,left: String, imageView: ImageView) {
+        private fun setConstraintsForBottomBG(
+            right: String,
+            bottom: String,
+            left: String,
+            imageView: ImageView
+        ) {
 
-            val listOfHeightWidth = getFinalValuesForConstraintsBG(bottom,right,left)
-            Log.d("listIntAllCasesCheck","bottom constraints: --> bottom,left,right $listOfHeightWidth")
+            val listOfHeightWidth = getFinalValuesForConstraintsTwoBG(bottom, right, left)
+            Log.d(
+                "listIntAllCasesCheck",
+                "bottom constraints: --> bottom,left,right $listOfHeightWidth"
+            )
 
             if (imageView.layoutParams is ViewGroup.MarginLayoutParams) {
                 (imageView.layoutParams as ViewGroup.MarginLayoutParams)
-                    .setMargins(listOfHeightWidth[2], 0, listOfHeightWidth[1],listOfHeightWidth[0])
+                    .setMargins(listOfHeightWidth[2], 0, listOfHeightWidth[1], listOfHeightWidth[0])
                 imageView.requestLayout()
             }
 
@@ -708,59 +817,100 @@ class AppConfig {
         /**
         Code to Set Final Height & Width
          */
-        private fun getHeightOrWidth(height: String, width: String,tag:String, imageView: ImageView) {
+        private fun getHeightOrWidth(
+            height: String,
+            width: String,
+            tag: String,
+            imageView: ImageView
+        ) {
 
-            val listOfHeightWidth = getFinalValuesForHeightWidthBG(height,width)
+            val listOfHeightWidth = getFinalValuesForHeightWidthBG(height, width)
 
             val isDp = TypedValue.COMPLEX_UNIT_DIP ==  // used for widgets sizes
-                    TypedValue.complexToDimensionPixelSize(listOfHeightWidth[0],
-                        imageView.context.resources.displayMetrics)
+                    TypedValue.complexToDimensionPixelSize(
+                        listOfHeightWidth[0],
+                        imageView.context.resources.displayMetrics
+                    )
             val isSp = TypedValue.COMPLEX_UNIT_SP == // used for text sizes
-                    TypedValue.complexToDimensionPixelSize(listOfHeightWidth[0],
-                        imageView.context.resources.displayMetrics)
+                    TypedValue.complexToDimensionPixelSize(
+                        listOfHeightWidth[0],
+                        imageView.context.resources.displayMetrics
+                    )
 
 
-            if(isDp){
-                Log.d("listIntAllCasesCheck","$tag unit is dp")
+            if (isDp) {
+                Log.d("listIntAllCasesCheck", "$tag unit is dp")
             }
             if (isSp) {
-                Log.d("listIntAllCasesCheck","$tag unit is sp")
+                Log.d("listIntAllCasesCheck", "$tag unit is sp")
             }
 
             imageView.layoutParams.height = listOfHeightWidth[0]
             imageView.layoutParams.width = listOfHeightWidth[1]
 
-            Log.d("listIntAllCasesCheck","$tag height & width constraints: --> height,width $listOfHeightWidth")
+            Log.d(
+                "listIntAllCasesCheck",
+                "$tag height & width constraints: --> height,width $listOfHeightWidth"
+            )
 
         }
 
         /**
         Code to Set Final All in One Value for TwoBG Screen
          */
-        fun getConstraintWithHeightWidthForTwoImageBG(list: BGPositionModelClass.BGPositionModelClassItem?, imgTopBG:ImageView, imgBottomBG:ImageView){
+        fun getConstraintWithHeightWidthForTwoImageBG(
+            list: BGPositionModelClass.BGPositionModelClassItem?,
+            imgTopBG: ImageView,
+            imgBottomBG: ImageView
+        ) {
             // giving background to both images
-            imgTopBG.setImageResource(getDrawableResourceId(imgTopBG.context, list!!.backgroundImageNameOnlyDashboard))
-            imgBottomBG.setImageResource(getDrawableResourceId(imgBottomBG.context, list.backgroundImageNameOnlyDetails))
+            imgTopBG.setImageResource(
+                getDrawableResourceId(
+                    imgTopBG.context,
+                    list!!.backgroundImageNameOnlyDashboard
+                )
+            )
+            imgBottomBG.setImageResource(
+                getDrawableResourceId(
+                    imgBottomBG.context,
+                    list.backgroundImageNameOnlyDetails
+                )
+            )
 
             // Assigning Top IMG CONSTRAINTS
             setConstraintsForTopBG(
                 list.dashboardBackgroundImgTopConstraint,
-                list.dashboardBackgroundImgRightConstraint,list.dashboardBackgroundImgLeftConstraint, imgTopBG)
+                list.dashboardBackgroundImgRightConstraint,
+                list.dashboardBackgroundImgLeftConstraint,
+                imgTopBG
+            )
             // Assigning Bottom IMG CONSTRAINTS
-            setConstraintsForBottomBG(list.detailsViewBackgroundImageRightConstraint,
-                list.detailsViewBackgroundImageBottomConstraint,list.detailsViewBackgroundImageLeftConstraint, imgBottomBG)
+            setConstraintsForBottomBG(
+                list.detailsViewBackgroundImageRightConstraint,
+                list.detailsViewBackgroundImageBottomConstraint,
+                list.detailsViewBackgroundImageLeftConstraint,
+                imgBottomBG
+            )
             // Assigning Top IMG Height & Width
-            getHeightOrWidth(list.dashboardBackgroundImgHeightConstraint,
-                list.dashboardBackgroundImgWidthConstraint, "Top BG",imgTopBG)
+            getHeightOrWidth(
+                list.dashboardBackgroundImgHeightConstraint,
+                list.dashboardBackgroundImgWidthConstraint, "Top BG", imgTopBG
+            )
             // Assigning Bottom IMG Height & Width
-            getHeightOrWidth(list.detailsViewBackgroundImageHeightConstant,
-                list.detailsViewBackgroundImageWidthConstant,"Bottom BG", imgBottomBG)
+            getHeightOrWidth(
+                list.detailsViewBackgroundImageHeightConstant,
+                list.detailsViewBackgroundImageWidthConstant, "Bottom BG", imgBottomBG
+            )
         }
 
         /**
         Code to Set Final All in One Value for OneBG Screen
          */
-        fun getConstraintWithHeightWidthForOneImageBG(list: BGPositionModelClass.BGPositionModelClassItem?,imageBG:ImageView){
+        fun getConstraintWithHeightWidthForOneImageBG(
+            list: BGPositionModelClass.BGPositionModelClassItem?,
+            imageBG: ImageView,parent:RelativeLayout
+        ) {
+
             // giving background to BG image
             imageBG.setImageResource(
                 getDrawableResourceId(
@@ -768,19 +918,87 @@ class AppConfig {
                     list!!.backgroundImageNameOnlyDashboard
                 )
             )
-            // Assigning BG IMG CONSTRAINTS
-            getHeightOrWidth(
-                list.dashboardBackgroundImgHeightConstraint,
-                list.dashboardBackgroundImgWidthConstraint,
-                "",
-                imageBG
-            )
-            setConstraintsForTopBG(
-                list.dashboardBackgroundImgTopConstraint,
-                list.dashboardBackgroundImgRightConstraint,
-                list.dashboardBackgroundImgLeftConstraint,
-                imageBG
-            )
+
+            // take these strings from server for constraints
+            val top = list.dashboardBackgroundImgTopConstraint
+            val right = list.dashboardBackgroundImgRightConstraint
+            val left = list.dashboardBackgroundImgLeftConstraint
+            val bottom = list.dashboardBackgroundImgBottomConstraint
+
+            val listOfConstraints = getFinalValuesForConstraintsOneBG(top, right, left, bottom)
+
+
+//            listOf(finalLeft, finalTop, finalRight, finalBottom)
+
+//            screenHeight: 2183
+//            screenWidth: 1080
+
+            // make cases here
+
+
+
+            val listOfHeightWidth = getFinalValuesForHeightWidthBG(list.dashboardBackgroundImgHeightConstraint,
+                list.dashboardBackgroundImgWidthConstraint)
+
+
+            if(top.isEmpty() && left.isEmpty()){
+               // case is to make image bottom - right
+
+               Log.d("listIntAllCasesCheck","true")
+
+
+               val relativeLayout = RelativeLayout(parent.context)
+               val params = RelativeLayout.LayoutParams(listOfHeightWidth[1], listOfHeightWidth[0])
+               params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+               params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+               params.rightMargin = listOfConstraints[2]
+               params.bottomMargin = listOfConstraints[3]
+
+               imageBG.layoutParams = params
+               parent.addView(relativeLayout)
+
+           }
+
+
+
+
+
+
+
+//
+//
+//            val hasZeroValue = listOfConstraints.any { it == 0 }
+//
+//            if (hasZeroValue) {
+//                // Assigning BG IMG CONSTRAINTS
+//                getHeightOrWidth(
+//                    list.dashboardBackgroundImgHeightConstraint,
+//                    list.dashboardBackgroundImgWidthConstraint,
+//                    "",
+//                    imageBG
+//                )
+//            }
+//            else{
+//                // don't assign height & Width
+//            }
+//
+//
+//            Log.d(
+//                "listIntAllCasesCheck",
+//                "constraints: --> left,top,right,bottom  $listOfConstraints"
+//            )
+//            if (imageBG.layoutParams is ViewGroup.MarginLayoutParams) {
+//                (imageBG.layoutParams as ViewGroup.MarginLayoutParams)
+//                    .setMargins(
+//                        listOfConstraints[0],
+//                        listOfConstraints[1],
+//                        listOfConstraints[2],
+//                        listOfConstraints[3]
+//                    )
+////                    .setMargins(0,0,0,0)
+//                imageBG.requestLayout()
+//            }
+
         }
 
         /**

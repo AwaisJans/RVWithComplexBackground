@@ -77,11 +77,12 @@
     "dashboardTopLogoHeight": "(SCREENWIDTH * (333/37) * (444/8765))",
 
     "backgroundImageNameOnlyDashboard": "img1",
-    "dashboardBackgroundImgTopConstraint": "SCREENHEIGHT / 55",
-    "dashboardBackgroundImgRightConstraint": "SCREENWIDTH / 66",
-    "dashboardBackgroundImgLeftConstraint": "SCREENWIDTH / 66",
-    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH * (777/375)",
-    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (85/85) * (12/12)"
+    "dashboardBackgroundImgTopConstraint": "",
+    "dashboardBackgroundImgRightConstraint": "SCREENHEIGHT / 17",
+    "dashboardBackgroundImgLeftConstraint": "",
+    "dashboardBackgroundImgBottomConstraint": "SCREENHEIGHT / 27",
+    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH / (12/2)",
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (1/1) / (6/2)"
 
   }
 ]
