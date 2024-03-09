@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jans.recycler.view.with.background.R
 import com.jans.recycler.view.with.background.adapter.SampleAdapter
 import com.jans.recycler.view.with.background.model.BGPositionModelClass.BGPositionModelClassItem
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getConstraintWithHeightWidthForTwoImageBG
 import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getScreenWidthAndHeight
 import com.jans.recycler.view.with.background.utils.AppConfig.Companion.screenHeight
+import com.jans.recycler.view.with.background.utils.TwoBGUtils.Companion.getConstraintWithHeightWidthForTwoImageBG
 
 
 class TwoImagesBGScreen : AppCompatActivity() {

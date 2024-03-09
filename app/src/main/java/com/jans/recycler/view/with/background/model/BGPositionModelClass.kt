@@ -37,6 +37,9 @@ class BGPositionModelClass : ArrayList<BGPositionModelClass.BGPositionModelClass
         @SerializedName("dashboardBackgroundImgLeftConstraint")
         @Expose
         var dashboardBackgroundImgLeftConstraint: String = "",
+        @SerializedName("dashboardBackgroundImgBottomConstraint")
+        @Expose
+        var dashboardBackgroundImgBottomConstraint: String = "",
         @SerializedName("dashboardBackgroundImgWidthConstraint")
         @Expose
         var dashboardBackgroundImgWidthConstraint: String = "",
