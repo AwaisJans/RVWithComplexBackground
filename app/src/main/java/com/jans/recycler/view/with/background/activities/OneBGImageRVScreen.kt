@@ -11,7 +11,7 @@ import com.jans.recycler.view.with.background.R
 import com.jans.recycler.view.with.background.adapter.SampleAdapter
 import com.jans.recycler.view.with.background.model.BGPositionModelClass
 import com.jans.recycler.view.with.background.utils.AppConfig
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getConstraintWithHeightWidthForOneImageBG
+import com.jans.recycler.view.with.background.utils.OneBGUtils.Companion.getConstraintWithHeightWidthForOneImageBG
 
 
 class OneBGImageRVScreen : AppCompatActivity() {
@@ -28,8 +28,8 @@ class OneBGImageRVScreen : AppCompatActivity() {
 //      getting screen width and height
         AppConfig.getScreenWidthAndHeight(this)
 
-        recyclerView = findViewById(com.jans.recycler.view.with.background.R.id.rvList)
-        imageBG = findViewById(com.jans.recycler.view.with.background.R.id.imgOneBG)
+        recyclerView = findViewById(R.id.rvList)
+        imageBG = findViewById(R.id.imgOneBG)
 
         list = intent.getSerializableExtra("ARRAY_LIST_NEWS") as BGPositionModelClass.BGPositionModelClassItem?
 

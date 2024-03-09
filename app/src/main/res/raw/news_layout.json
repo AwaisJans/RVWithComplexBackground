@@ -71,18 +71,16 @@
   {
     "title": "News4 One Screen BG Background",
     "isTwoImageBGScreen": false,
-    "dashboardHeaderViewHeight": "SCREENHEIGHT / 11112",
-    "logoImageName": "logo_vereine",
-    "logoTopConstraint": "SCREENHEIGHT / 222",
-    "dashboardTopLogoHeight": "(SCREENWIDTH * (333/37) * (444/8765))",
 
     "backgroundImageNameOnlyDashboard": "img1",
     "dashboardBackgroundImgTopConstraint": "",
-    "dashboardBackgroundImgRightConstraint": "SCREENHEIGHT / 17",
-    "dashboardBackgroundImgLeftConstraint": "",
-    "dashboardBackgroundImgBottomConstraint": "SCREENHEIGHT / 27",
-    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH / (12/2)",
-    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (1/1) / (6/2)"
+    "dashboardBackgroundImgRightConstraint": "",
+    "dashboardBackgroundImgLeftConstraint": "SCREENHEIGHT / 120",
+    "dashboardBackgroundImgBottomConstraint": "",
+    "dashboardBackgroundImgWidthConstraint": "SCREENWIDTH / (20/5)",
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT / (25/5) - (100*5)"
 
   }
+
+
 ]
