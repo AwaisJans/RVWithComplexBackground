@@ -14,7 +14,7 @@
 
     "dashboardBackgroundImgWidthConstraint": "(SCREENHEIGHT * (122/375))",
 
-    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (200/375) * (2333/445)",
+    "dashboardBackgroundImgHeightConstraint": "SCREENHEIGHT * (200/375) * (245/445)",
 
     "backgroundImageNameOnlyDetails": "r1",
     "detailsViewBackgroundImageBottomConstraint": "SCREENHEIGHT - 3000",

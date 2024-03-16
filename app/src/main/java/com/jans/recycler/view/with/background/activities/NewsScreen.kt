@@ -1,8 +1,8 @@
 package com.jans.recycler.view.with.background.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,29 +10,11 @@ import com.google.gson.Gson
 import com.jans.recycler.view.with.background.R
 import com.jans.recycler.view.with.background.adapter.NewsAdapter
 import com.jans.recycler.view.with.background.model.BGPositionModelClass
+import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getDrawableResourceId
 import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getScreenWidthAndHeight
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getHeightOrWidthFromRegexCase1
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getHeightOrWidthFromRegexCase2
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getHeightOrWidthFromRegexCase3
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.getHeightOrWidthFromRegexCase4
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.heightFromServerCase1
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.heightFromServerCase2
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.heightFromServerCase3
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.heightFromServerCase4
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternHeightCase1
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternHeightCase2
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternHeightCase3
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternHeightCase4
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternWidthCase1
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternWidthCase2
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternWidthCase3
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.patternWidthCase4
 import com.jans.recycler.view.with.background.utils.AppConfig.Companion.screenHeight
 import com.jans.recycler.view.with.background.utils.AppConfig.Companion.screenWidth
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.widthFromServerCase1
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.widthFromServerCase2
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.widthFromServerCase3
-import com.jans.recycler.view.with.background.utils.AppConfig.Companion.widthFromServerCase4
+import com.jans.recycler.view.with.background.utils.AppConfig.Companion.showToast
 import java.io.InputStreamReader
 
 
@@ -42,10 +24,45 @@ class NewsScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_two_bgimages_rvscreen)
+        setContentView(R.layout.news_screen)
+
+
+        val imgTest = findViewById<ImageView>(R.id.idTestImg)
+        val imgTestDetailsTV = findViewById<TextView>(R.id.tvDetails)
+
+        getScreenWidthAndHeight(this)
+
+        imgTest.setImageResource(getDrawableResourceId(this,"img1"))
+
+
+        val iosWidthIphone15 = 430
+        val iosHeightIphone15 = 839
+
+        val calculatedHeight:Float= iosHeightIphone15.toFloat() * (200.toFloat()/375.toFloat()) * (245.toFloat()/445.toFloat())
+        val calculatedWidth:Float = iosWidthIphone15.toFloat() * (122.toFloat()/375.toFloat())
+
+        val detailStr =
+                "\n\nios ScreenWidth: $iosHeightIphone15\n" +
+                "ios ScreenHeight: $iosWidthIphone15\n\n" +
+                "Android Screen Height: $screenHeight\n" +
+                "Android Screen Width: $screenWidth\n\n" +
+                "Android Calculated Height: ${calculatedHeight.toInt()}\n" +
+                "Android Calculated Width: ${calculatedWidth.toInt()}\n\n" +
+                "ios CalculatedHeight: 246.358052\n\n" +
+                "ios CalculatedWidth: 139.893333\n"
+
+        imgTestDetailsTV.text = detailStr
+
+        imgTest.layoutParams.height = calculatedHeight.toInt()
+        imgTest.layoutParams.width = calculatedWidth.toInt()
 
         recyclerView = findViewById(R.id.rvList)
-        setAdapterRV()
+//        setAdapterRV()
+
+
+
+
+
 
     }
 
